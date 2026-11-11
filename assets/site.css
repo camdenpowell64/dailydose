@@ -49,7 +49,9 @@ body {
   margin: 0; color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23116a37' stroke-opacity='.05' stroke-width='3'%3E%3Cg transform='rotate(-45 45 45)'%3E%3Crect x='17' y='33' width='56' height='24' rx='12'/%3E%3Cpath d='M45 33v24'/%3E%3C/g%3E%3Cg transform='rotate(-45 135 135)'%3E%3Crect x='107' y='123' width='56' height='24' rx='12'/%3E%3Cpath d='M135 123v24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") top left / 180px repeat, var(--page) fixed;
-  background-color: var(--mint-2);
+  /* Also the color Safari paints outside the page (iPhone Duo's side toolbar, overscroll): the gradient's average,
+     since Safari can't draw the gradient or the pattern there. */
+  background-color: #f1f7f2;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--moss); text-underline-offset: 3px; }
@@ -240,7 +242,7 @@ footer .spacer { flex: 1; }
   .check-btn .fill, .check-btn .tick, .check-btn[aria-pressed="true"] .fill, .check-btn[aria-pressed="true"] .tick { transform: none; transition: opacity 0.15s ease-in-out !important; }
 }
 @media (prefers-color-scheme: dark) {
-  body { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='white' stroke-opacity='.035' stroke-width='3'%3E%3Cg transform='rotate(-45 45 45)'%3E%3Crect x='17' y='33' width='56' height='24' rx='12'/%3E%3Cpath d='M45 33v24'/%3E%3C/g%3E%3Cg transform='rotate(-45 135 135)'%3E%3Crect x='107' y='123' width='56' height='24' rx='12'/%3E%3Cpath d='M135 123v24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") top left / 180px repeat, var(--page) fixed; background-color: #0b0b0d; }
+  body { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='white' stroke-opacity='.035' stroke-width='3'%3E%3Cg transform='rotate(-45 45 45)'%3E%3Crect x='17' y='33' width='56' height='24' rx='12'/%3E%3Cpath d='M45 33v24'/%3E%3C/g%3E%3Cg transform='rotate(-45 135 135)'%3E%3Crect x='107' y='123' width='56' height='24' rx='12'/%3E%3Cpath d='M135 123v24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") top left / 180px repeat, var(--page) fixed; background-color: #0d1510; }
   .feature-art { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='white' stroke-opacity='.035' stroke-width='3'%3E%3Cg transform='rotate(-45 45 45)'%3E%3Crect x='17' y='33' width='56' height='24' rx='12'/%3E%3Cpath d='M45 33v24'/%3E%3C/g%3E%3Cg transform='rotate(-45 135 135)'%3E%3Crect x='107' y='123' width='56' height='24' rx='12'/%3E%3Cpath d='M135 123v24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / 150px, var(--art); }
   .chip { background: #16241b; }
   .closing { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='white' stroke-opacity='.09' stroke-width='3'%3E%3Cg transform='rotate(-45 45 45)'%3E%3Crect x='17' y='33' width='56' height='24' rx='12'/%3E%3Cpath d='M45 33v24'/%3E%3C/g%3E%3Cg transform='rotate(-45 135 135)'%3E%3Crect x='107' y='123' width='56' height='24' rx='12'/%3E%3Cpath d='M135 123v24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / 180px, linear-gradient(160deg, #2c6a3f 0%, #1a6f3c 50%, #0d4d27 100%); }

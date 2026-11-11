@@ -55,7 +55,7 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--moss); text-underline-offset: 3px; }
-a:focus-visible, summary:focus-visible, .button:focus-visible { outline: 3px solid var(--moss); outline-offset: 3px; border-radius: 12px; }
+a:focus-visible, summary:focus-visible, .store-badge:focus-visible { outline: 3px solid var(--moss); outline-offset: 3px; border-radius: 12px; }
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 16px; z-index: 10; background: var(--card); padding: 8px 14px; border-radius: 999px; }
 
@@ -93,11 +93,10 @@ p { margin: 0; }
 .small { font-size: 15px; }
 
 .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
-.button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px;
-  background: var(--fill); color: #fff; font-weight: 650; font-size: 17px; text-decoration: none;
-  box-shadow: 0 8px 22px rgba(17, 106, 55, 0.28); }
-.button svg { width: 20px; height: 20px; }
-.button.light { background: #fff; color: #116a37; box-shadow: none; }
+/* Apple's official "Download on the App Store" badge, unmodified (black; white in dark mode; black on the green closing card).
+   Apple: at least 40 px tall, clear space of a quarter of its height on every side. */
+.store-badge { display: inline-block; line-height: 0; margin: 4px 0; }
+.store-badge img { display: block; width: auto; height: 54px; }
 
 .phone { border-radius: 13.6% / 6.3%; border: 7px solid #15201a; overflow: hidden; background: #15201a; box-shadow: 0 24px 60px rgba(15, 31, 21, 0.2); }
 .phone img { width: 100%; }
@@ -107,7 +106,7 @@ p { margin: 0; }
 
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding-top: 28px; }
 .hero-copy { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
-.hero-copy .button { margin-top: 10px; }
+.hero-copy .store-badge { margin-top: 10px; }
 .app-icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 30px rgba(17, 106, 55, 0.22); }
 .hero-phones { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
 .hero-phones .phone:nth-child(2) { margin-top: 64px; transform: rotate(4deg); }
@@ -177,6 +176,8 @@ details[open] summary { color: var(--moss); }
 footer { max-width: 1060px; margin: 0 auto; padding: 28px 20px 48px; border-top: 0.5px solid var(--separator); display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--tertiary); font-size: 15px; }
 footer a { color: var(--secondary); }
 footer .spacer { flex: 1; }
+footer .legal { flex-basis: 100%; margin: 0; font-size: 13px; }
+.closing .store-badge:focus-visible { outline-color: #fff; }
 
 @media (max-width: 820px) {
   .hero, .feature, .pair { grid-template-columns: 1fr; }

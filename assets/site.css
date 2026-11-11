@@ -13,6 +13,7 @@
   --card: #ffffff;
   --fill: #116a37;                 /* solid fills (buttons, checks), white on top */
   --ring: #dde5e0;                 /* empty check ring, off week pills */
+  --fill-2: #2f8a52;               /* lighter half of the two-tone week pills */
   --art: linear-gradient(160deg, #eef6f0, #e5f0e8);
   --page: linear-gradient(165deg, #eef6f0 0%, #f6f9f6 45%, #f1f7f2 100%);
   --glass: rgba(255, 255, 255, 0.66);
@@ -35,7 +36,7 @@
     --moss: #48a75a; --moss-deep: #0d572c; --fill: #1f8748;
     --ink: #ffffff; --secondary: rgba(235, 235, 245, 0.68); --tertiary: rgba(235, 235, 245, 0.45);
     --mint: #16241b; --mint-2: #0b0b0d; --mint-line: #24382b;
-    --card: #1c1c1e; --ring: #3a3a3c; --separator: rgba(84, 84, 88, 0.6);
+    --card: #1c1c1e; --ring: #3a3a3c; --fill-2: #4fb064; --separator: rgba(84, 84, 88, 0.6);
     --shadow: none; --art: linear-gradient(160deg, #13231a, #0e1912);
     --page: linear-gradient(165deg, #0f1a13 0%, #0b0b0d 45%, #0c130e 100%);
     --glass: rgba(44, 44, 46, 0.62); --glass-edge: rgba(255, 255, 255, 0.12); --lift: rgba(0, 0, 0, 0.4);
@@ -67,7 +68,12 @@ a:focus-visible, summary:focus-visible, .button:focus-visible { outline: 3px sol
   font-size: 15px; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .nav a.home { padding-left: 7px; }
 .nav a.home img { width: 26px; height: 26px; border-radius: 7px; }
+/* Narrow phones (320–380 px): tighter capsules so the bar never clips. */
+@media (max-width: 380px) { .nav a { padding: 7px 10px; font-size: 14px; gap: 6px; flex: none; } .nav a.home { padding-left: 6px; } .nav a.home img { width: 22px; height: 22px; border-radius: 6px; } }
 .nav a[aria-current="page"] { background: var(--fill); color: #fff; }
+/* The app icon sits on this capsule: always the icon's own green (P3), also in dark mode, so the icon's edge doesn't show. */
+.nav a.home[aria-current="page"] { background: #116a37; }
+@supports (color: color(display-p3 0 0 0)) { .nav a.home[aria-current="page"] { background: color(display-p3 0.0667 0.4157 0.2157); } }
 
 main { max-width: 1060px; margin: 0 auto; padding: 40px 20px 72px; }
 .narrow { max-width: 740px; }
@@ -182,20 +188,23 @@ footer .spacer { flex: 1; }
 /* Try-it widget: the medium Daily Dose widget (Minimal), tappable like the real one. */
 .try { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 44px; align-items: center; padding: 48px; }
 .try-copy { display: flex; flex-direction: column; gap: 14px; }
-.try-art { padding: 48px 24px; }
-.widget { position: relative; width: min(440px, 100%); background: var(--card); border-radius: 34px; padding: 22px 24px 22px 18px;
-  display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center;
+.try-art { padding: 48px 24px; container-type: inline-size; }
+/* The medium widget is laid out at 440 px and scales down as a whole with the space it has (--s = 1 px at
+   full size), like a real widget on a smaller phone, instead of squeezing; small text has a floor. Below 280 px: the small layout. */
+.widget { --s: min(1px, 100cqw / 440); position: relative; width: calc(440 * var(--s)); background: var(--card);
+  border-radius: calc(34 * var(--s)); padding: calc(22 * var(--s)) calc(24 * var(--s)) calc(22 * var(--s)) calc(18 * var(--s));
+  display: grid; grid-template-columns: auto 1fr; gap: calc(18 * var(--s)); align-items: center;
   box-shadow: 0 24px 60px rgba(17, 106, 55, 0.18), 0 1px 3px rgba(15, 31, 21, 0.06); }
-.widget .count { position: absolute; top: 18px; right: 22px; font-size: 14px; font-weight: 650; color: var(--tertiary); }
-.widget .name { font-size: 26px; font-weight: 750; letter-spacing: -0.015em; line-height: 1.15; color: var(--ink); }
-.widget .dose { font-size: 16px; color: var(--secondary); }
-.widget .alert { display: flex; align-items: center; gap: 5px; font-size: 14px; color: var(--secondary); margin-top: 2px; }
-.widget .alert .i { width: 15px; height: 15px; }
+.widget .count { position: absolute; top: calc(18 * var(--s)); right: calc(22 * var(--s)); font-size: max(11px, 14 * var(--s)); font-weight: 650; color: var(--tertiary); }
+.widget .name { font-size: max(18px, 26 * var(--s)); font-weight: 750; letter-spacing: -0.015em; line-height: 1.15; color: var(--ink); }
+.widget .dose { font-size: max(13px, 16 * var(--s)); color: var(--secondary); }
+.widget .alert { display: flex; align-items: center; gap: calc(5 * var(--s)); font-size: max(12px, 14 * var(--s)); color: var(--secondary); margin-top: calc(2 * var(--s)); }
+.widget .alert .i { width: calc(15 * var(--s)); height: calc(15 * var(--s)); }
 /* Check circle: same motion as the widget (WidgetFaces.swift CheckCircle). The fill pops in on
    .spring(duration: 0.25, bounce: 0.5), sampled into linear(), and shrinks out with a 0.18 s ease-in,
    staying solid until a hard cut at the end. The check scales 0.5 to 1 on the same spring and goes first when cleared. */
-.check-btn { --size: 104px; position: relative; width: var(--size); height: var(--size); border: 0; padding: 0; border-radius: 50%;
-  background: var(--card); box-shadow: inset 0 0 0 4.5px var(--ring); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.check-btn { --size: calc(104 * var(--s)); position: relative; width: var(--size); height: var(--size); border: 0; padding: 0; border-radius: 50%;
+  background: var(--card); box-shadow: inset 0 0 0 calc(4.5 * var(--s)) var(--ring); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .check-btn .fill { position: absolute; inset: 0; border-radius: 50%; background: var(--fill); transform: scale(0.001); opacity: 0;
   transition: transform 0.18s ease-in, opacity 0.01s linear 0.17s; }
 .check-btn .tick { position: absolute; left: 27%; top: 27%; width: 46%; height: 46%; color: #fff; transform: scale(0.5); opacity: 0;
@@ -204,21 +213,23 @@ footer .spacer { flex: 1; }
   transition: transform 0.5s cubic-bezier(.34, 1.56, .64, 1), opacity 0s; transition-timing-function: linear(0.000, 0.044, 0.157, 0.310, 0.480, 0.647, 0.799, 0.927, 1.027, 1.097, 1.141, 1.160, 1.161, 1.149, 1.127, 1.100, 1.072, 1.046, 1.023, 1.004, 0.990, 0.980, 0.975, 0.973, 0.974, 0.977, 0.981, 0.986, 0.990, 0.994, 0.998, 1.001, 1.002, 1.004, 1.004, 1.004, 1.004, 1.003, 1.003, 1.002, 1), linear; }
 .check-btn[aria-pressed="true"] .tick { transform: scale(1); opacity: 1;
   transition: transform 0.5s cubic-bezier(.34, 1.56, .64, 1), opacity 0.1s ease-out; transition-timing-function: linear(0.000, 0.044, 0.157, 0.310, 0.480, 0.647, 0.799, 0.927, 1.027, 1.097, 1.141, 1.160, 1.161, 1.149, 1.127, 1.100, 1.072, 1.046, 1.023, 1.004, 0.990, 0.980, 0.975, 0.973, 0.974, 0.977, 0.981, 0.986, 0.990, 0.994, 0.998, 1.001, 1.002, 1.004, 1.004, 1.004, 1.004, 1.003, 1.003, 1.002, 1), ease-out; }
-.week { display: flex; gap: 12px; margin-top: 12px; }
-.wd { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.wd b { font-size: 11px; font-weight: 600; color: var(--tertiary); }
+.week { display: flex; gap: calc(12 * var(--s)); margin-top: calc(12 * var(--s)); }
+.wd { display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--s)); }
+.wd b { font-size: max(9px, 11 * var(--s)); font-weight: 600; color: var(--tertiary); }
 .wd.today b { color: var(--ink); font-weight: 800; }
-.wp { display: block; width: 8px; height: 18px; border-radius: 5px; transform: rotate(45deg); background: linear-gradient(var(--fill) 50%, #2f8a52 50%); transition: background .2s; }
+.wp { display: block; width: calc(8 * var(--s)); height: calc(18 * var(--s)); border-radius: calc(5 * var(--s)); transform: rotate(45deg); background: linear-gradient(var(--fill) 50%, var(--fill-2) 50%); transition: background .2s; }
 .wp.off { background: var(--ring); }
 .hint { font-size: 14px; color: var(--tertiary); }
+/* One column until the widget's half has room for the full-size widget. */
+@media (max-width: 960px) { .try { grid-template-columns: 1fr; gap: 32px; } }
 @media (max-width: 820px) {
-  .try { grid-template-columns: 1fr; padding: 28px 20px; gap: 26px; }
+  .try { padding: 28px 20px; gap: 26px; }
   .try-art { padding: 32px 12px; }
 }
-@media (max-width: 480px) {
+@media (max-width: 480px) { .try-art { padding: 28px 8px; } }
+@container (max-width: 279px) {
   /* Small-widget layout: check top-left, count top-right, details below. */
-  .try-art { padding: 28px 10px; }
-  .widget { grid-template-columns: 1fr; gap: 10px; width: min(300px, 100%); padding: 18px 20px 20px; border-radius: 30px; }
+  .widget { --s: 1px; grid-template-columns: 1fr; gap: 10px; width: min(300px, 100%); padding: 18px 20px 20px; border-radius: 30px; }
   .widget .count { top: 20px; right: 20px; }
   .check-btn { --size: 80px; justify-self: start; }
   .widget .name { font-size: 22px; }

@@ -2,103 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Dose</title>
-<meta name="description" content="Daily Dose: check off your meds from your iPhone Home Screen.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<style>
-  /* Layout: one centered reading column (~65ch), a short summary panel up top, then plain sections. */
-  :root {
-    --bg: #f6f8f6;
-    --surface: #ffffff;
-    --ink: #17201a;
-    --muted: #55625a;
-    --accent: #15803d;
-    --line: #dde5df;
-    --font-display: "Figtree", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f1411;
-      --surface: #171e19;
-      --ink: #e8eee9;
-      --muted: #a3b0a7;
-      --accent: #6cc56a;
-      --line: #27322b;
-      color-scheme: dark;
-    }
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  main {
-    max-width: 68ch;
-    margin: 0 auto;
-    padding: 56px 20px 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-  header { display: flex; flex-direction: column; gap: 10px; }
-  .app {
-    text-decoration: none;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--accent);
-    letter-spacing: 0.01em;
-  }
-  h1, h2 {
-    font-family: var(--font-display);
-    text-wrap: balance;
-    margin: 0;
-    line-height: 1.2;
-  }
-  h1 { font-size: clamp(32px, 6vw, 44px); font-weight: 700; }
-  h2 { font-size: 21px; font-weight: 600; }
-  .meta { color: var(--muted); font-size: 16px; margin: 0; }
-  .summary {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--accent);
-    border-radius: 12px;
-    padding: 20px 22px;
-  }
-  .summary p { margin: 0; }
-  section { display: flex; flex-direction: column; gap: 12px; }
-  section p { margin: 0; }
-  ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
-  a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  footer { color: var(--muted); font-size: 15px; border-top: 1px solid var(--line); padding-top: 20px; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Dose: medication tracker for iPhone</title>
+<meta name="description" content="Check off your meds from your iPhone Home Screen. Widgets, reminders and alarms, a calendar and PDF reports for your doctor. Everything stays on your iPhone.">
+<meta name="theme-color" content="#eef6f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Daily Dose: medication tracker for iPhone">
+<meta property="og:description" content="Check off your meds from your iPhone Home Screen. Widgets, reminders and alarms, a calendar and PDF reports for your doctor. Everything stays on your iPhone.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.dailydose-app.com/assets/img/og-image.png">
+<meta property="og:url" content="https://www.dailydose-app.com/">
+<link rel="canonical" href="https://www.dailydose-app.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
-<main>
-  <header>
-    <div class="app">Daily Dose</div>
-    <h1>Check off your meds from your Home Screen.</h1>
-    <p class="meta">A simple medication tracker for iPhone, by Camden Powell.</p>
-  </header>
-  <section>
-    <h2>Links</h2>
-    <ul>
-      <li><a href="support/">Support</a></li>
-      <li><a href="privacy/">Privacy Policy</a></li>
-    </ul>
+<a class="skip" href="#content">Skip to content</a>
+<nav class="nav" aria-label="Site">
+  <a class="home" href="index.html" aria-current="page"><img src="assets/img/icon-512.png" alt="">Daily Dose</a>
+  <a href="support/index.html">Support</a>
+  <a href="privacy/index.html">Privacy</a>
+</nav>
+
+<main id="content">
+  <section class="hero">
+    <div class="hero-copy">
+      <img class="app-icon" src="assets/img/icon-512.png" width="96" height="96" alt="Daily Dose app icon">
+      <h1>One tap. Done.</h1>
+      <p class="lede">Check off your meds from your Home Screen. Get a reminder or an alarm when you haven't, and keep a clear record for your doctor.</p>
+      <p class="tagline">Free · No account · No ads</p>
+      <!-- TODO before publishing: replace href with the App Store link (apps.apple.com/…/id…). -->
+<a class="button" href="#app-store" id="app-store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.3-3.54zM14.18 6.13c.6-.74 1.01-1.75.9-2.77-.87.04-1.93.58-2.55 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.57-1.21z"/></svg><span>Download on the App Store</span></a>
+      <p class="requirements">For iPhone with iOS 26 or later, including iPhone Duo</p>
+    </div>
+    <div class="hero-phones">
+      <div class="phone"><picture><source srcset="assets/img/today-dark.jpg" media="(prefers-color-scheme: dark)"><img src="assets/img/today.jpg" width="720" height="1565" alt="The Today screen: 2 of 5 taken, Fish Oil next to take this afternoon, with medications grouped into Morning, Afternoon, Evening and Any time."></picture></div>
+      <div class="phone"><img src="assets/img/widgets.jpg" width="720" height="1565" alt="Home Screen with Daily Dose widgets: today's list, single medications in Minimal and Bold, and a week of doses."></div>
+    </div>
   </section>
-  <footer>Daily Dose is developed by Camden Powell.</footer>
+
+  <div class="features">
+    <section class="try card">
+      <div class="try-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg>Try it</p>
+        <h2>Go on, tap it.</h2>
+        <p class="sub">That's the whole idea.</p>
+        <p class="muted">This is a Daily Dose widget. On your Home Screen, one tap checks off the dose, counts down your pills and fills in today on the week strip. No need to open the app.</p>
+      </div>
+      <div class="feature-art try-art">
+        <div class="widget">
+          <button class="check-btn" type="button" aria-pressed="false" data-dose aria-label="Vitamin D taken">
+            <span class="fill"></span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l4.8 4.8L19.5 7"/></svg>
+          </button>
+          <div>
+            <p class="name">Vitamin D</p>
+            <p class="dose">1000 IU · <span data-status aria-live="polite">Not taken yet</span></p>
+            <p class="alert"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>8 AM</p>
+            <span class="week" aria-hidden="true"><span class="wd"><b>S</b><i class="wp off"></i></span><span class="wd"><b>M</b><i class="wp on"></i></span><span class="wd"><b>T</b><i class="wp on"></i></span><span class="wd"><b>W</b><i class="wp on"></i></span><span class="wd"><b>T</b><i class="wp on"></i></span><span class="wd today"><b>F</b><i class="wp off"></i></span><span class="wd"><b>S</b><i class="wp off"></i></span></span>
+          </div>
+          <span class="count" data-count>23 left</span>
+        </div>
+      </div>
+    </section>
+    <section class="feature card">
+      <div class="feature-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg>Widgets</p>
+        <h2>On your Lock Screen, too.</h2>
+        <p class="sub">Check off a dose without opening the app.</p>
+        <p class="muted">Tap a widget when you take a dose. Every widget stays in sync, wherever you check it off.</p>
+        <ul>
+          <li>A single medication, or today's whole list</li>
+          <li>Lock Screen widgets, too</li>
+          <li>Twelve colors, eight fonts, Bold or Minimal for each widget</li>
+          <li>Your reminder and alarm times, and a pill for each day of the week</li>
+        </ul>
+      </div>
+      <div class="feature-art single">
+        <div class="phone"><img src="assets/img/lock-screen.jpg" width="720" height="1565" loading="lazy" alt="Lock Screen at 4:30 with Daily Dose widgets: Magnesium not taken yet with 4 left, and Levothyroxine checked off."></div>
+      </div>
+    </section>
+
+    <section class="feature card flip">
+      <div class="feature-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 1.5M4.5 5.5l3-2.5M19.5 5.5l-3-2.5"/></svg>Reminders and alarms</p>
+        <h2>Rings, even on Silent.</h2>
+        <p class="sub">Quiet once it's checked off.</p>
+        <p class="muted">Get a reminder at your time, and add an alarm on its own or as a backup. Alarms ring even in Silent mode or a Focus, unless you've already checked off the dose.</p>
+        <ul>
+          <li>Tap Take Now on the alarm to check it off</li>
+          <li>Slide to stop snoozes it, for as long as you choose</li>
+          <li>Touch and hold a reminder to check off the dose from there</li>
+        </ul>
+      </div>
+      <div class="feature-art">
+        <div class="phone"><img src="assets/img/alarm.jpg" width="720" height="1558" loading="lazy" alt="A Daily Dose alarm at 6:00: Magnesium, Stop to snooze (30 min), with a Take Now button and slide to stop."></div>
+        <div class="phone duo-outer"><img src="assets/img/reminder-duo.jpg" width="720" height="1047" loading="lazy" alt="A reminder on the Lock Screen at 5:00, Magnesium, with Take Now."></div>
+      </div>
+    </section>
+
+    <section class="feature card">
+      <div class="feature-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8.5" width="17" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M9.5 9.5l5 5"/></svg>Today</p>
+        <h2>Your day, in order.</h2>
+        <p class="sub">Morning, afternoon and evening.</p>
+        <p class="muted">A summary tells you what's next. Missed one? Swipe back to an earlier day and fill it in, with the time you took it.</p>
+      </div>
+      <div class="feature-art">
+        <div class="phone"><img src="assets/img/today.jpg" width="720" height="1565" loading="lazy" alt="The Today screen: 2 of 5 taken, Fish Oil next to take this afternoon, with medications grouped into Morning, Afternoon, Evening and Any time."></div>
+        <div class="phone"><img src="assets/img/earlier-day.jpg" width="720" height="1565" loading="lazy" alt="Yesterday, with a sheet asking when you took Magnesium, set to 6:20 PM."></div>
+      </div>
+    </section>
+
+    <section class="feature card flip">
+      <div class="feature-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z" transform="translate(-.5 0)"/><path d="M13.5 3.5v4h4M9.5 12h5M9.5 15.5h5"/></svg>Calendar and reports</p>
+        <h2>A report for your doctor.</h2>
+        <p class="sub">Every dose, and when.</p>
+        <p class="muted">See each month at a glance, including days you took only some doses. Tap a day to change a dose's time or write a note.</p>
+        <ul>
+          <li>Export a month, your whole history, or any range as a PDF</li>
+          <li>A daily log with the time of every dose, and your notes</li>
+          <li>Ready to print, email or share</li>
+        </ul>
+      </div>
+      <div class="feature-art">
+        <div class="paper"><img src="assets/img/pdf-report.jpg" width="900" height="1164" loading="lazy" alt="Page 1 of a Daily Dose PDF report for November 2026: 96% adherence, 86 of 90 doses, and a table of medications."></div>
+      </div>
+    </section>
+
+    <section class="feature card">
+      <div class="feature-copy">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="3"/><path d="M12 4.5v15"/></svg>iPhone Duo</p>
+        <h2>The whole month, unfolded.</h2>
+        <p class="sub">No need to unfold for a quick check-off.</p>
+        <p class="muted">Daily Dose fits the outer display, and opens up on the inner display, with the calendar in landscape.</p>
+      </div>
+      <div class="feature-art wide">
+        <div class="phone duo-open"><img src="assets/img/calendar-duo.jpg" width="1400" height="985" loading="lazy" alt="The calendar for November 2026 on iPhone Duo's inner display: filters for each medication, full and partial days, and 83 of 90 doses taken this month."></div>
+      </div>
+    </section>
+
+    <div class="pair">
+      <section class="card">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7 2.5v5.5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>Private by design</p>
+        <h3>Nothing leaves your iPhone.</h3>
+        <p class="muted">Daily Dose doesn't collect anything. <a href="privacy/index.html">Privacy Policy</a></p>
+        <div class="chips"><span class="chip"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>No account</span><span class="chip"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18.5a4 4 0 0 1-.6-8A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9.5z"/></svg>No servers</span><span class="chip"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>No tracking</span></div>
+      </section>
+      <section class="card">
+        <p class="eyebrow"><svg class="i" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c3 3.6 5.5 6.6 5.5 10a5.5 5.5 0 0 1-11 0c0-3.4 2.5-6.4 5.5-10z"/></svg>Pill counts</p>
+        <h3>Refills, handled.</h3>
+        <p class="muted">Track how many pills are left and get a heads-up before you run out. Daily Dose follows Reduce Motion and supports larger text and VoiceOver.</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="closing">
+    <span class="ring-check" aria-hidden="true"><span class="r r3"></span><span class="r r2"></span><span class="r r1"></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5l4.3 4.3L18.5 8"/></svg></span></span>
+    <h2>Your meds, one tap away.</h2>
+    <p class="sub">Never wonder whether you took it.</p>
+    <!-- TODO before publishing: replace href with the App Store link (apps.apple.com/…/id…). -->
+<a class="button light" href="#app-store"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.3-3.54zM14.18 6.13c.6-.74 1.01-1.75.9-2.77-.87.04-1.93.58-2.55 1.31-.56.64-1.05 1.68-.92 2.67.97.08 1.96-.49 2.57-1.21z"/></svg><span>Download on the App Store</span></a>
+    <p class="small">Questions? Visit <a href="support/index.html">Support</a>.</p>
+  </section>
 </main>
+
+<footer>
+  <span>© 2026 Camden Powell</span>
+  <span class="spacer"></span>
+  <a href="support/index.html">Support</a>
+  <a href="privacy/index.html">Privacy Policy</a>
+</footer>
 </body>
 </html>
